@@ -1,3 +1,4 @@
+import { MovieProvider } from './../../providers/movie/movie';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -11,6 +12,9 @@ import { NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-feed',
   templateUrl: 'feed.html',
+  providers: [
+    MovieProvider
+  ]
 })
 export class FeedPage {
 
@@ -25,12 +29,31 @@ export class FeedPage {
   }
 
   public nome_usuario:string = "Marcos";
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public lista_bairros = new Array<any>();
+  public lista_filmes = new Array<any>();
+  constructor(
+    public navCtrl: NavController,
+     public navParams: NavParams,
+     private MovieProvider: MovieProvider
+     ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FeedPage');
+   this.MovieProvider.getLatestMovie().subscribe(
+     data=> {
+
+       const response = (data as any);
+       const objeto_retorno = JSON.parse(response._body);
+       //this.lista_bairros = objeto_retorno.bairros;
+       this.lista_filmes = objeto_retorno.results;
+
+       console.log(data);
+     },error => {
+       console.log(error);
+     }
+   )
+
+   
   }
 
 }

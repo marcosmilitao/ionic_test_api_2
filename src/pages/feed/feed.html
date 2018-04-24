@@ -7,48 +7,56 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>feed</ion-title>
+    <ion-title>Filmes</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngFor="let filme of lista_filmes">
+
+      <!--<ion-item>
+        <ion-avatar item-start>
+          <img src="assets/img/rj.png">
+        </ion-avatar>
+        <h2>{{ bairros.nome }}</h2>
+        <p>{{ bairros.id }}</p>
+      </ion-item>-->
 
     <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/img/avatar.png">
-      </ion-avatar>
-      <h2>{{ objeto_feed.titulo }}</h2>
-      <p>{{ objeto_feed.data }}</p>
+      <ion-thumbnail item-start>
+        <img [src]="'https://image.tmdb.org/t/p/w300/'+ filme.poster_path">
+      </ion-thumbnail>
+      <h2>{{ filme.title }}</h2>
+      <p class= "data-titulo">{{ filme.release_date }}</p>
     </ion-item>
 
-    <img src="assets/img/card.png">
+    <!-- <img [src]="'https://image.tmdb.org/t/p/w300/'+ filme.backdrop_path">
 
     <ion-card-content>
-      <p>{{ objeto_feed.descricao }}</p>
+      <p>{{ filme.overview }}</p>
     </ion-card-content>
 
     <ion-row>
       <ion-col>
         <button ion-button icon-left clear small>
         <ion-icon name="thumbs-up"></ion-icon>
-        <div>{{ objeto_feed.qntd_likes }} Likes</div>
+        <div>{{ filme.vote_average }} Nota</div>
       </button>
       </ion-col>
       <ion-col>
         <button ion-button icon-left clear small>
         <ion-icon name="text"></ion-icon>
-        <div>{{ objeto_feed.qntd_comments }} Comments</div>
+        <div>{{ filme.qntd_comments }} Comments</div>
       </button>
       </ion-col>
       <ion-col center text-center>
         <ion-note>
-          {{ objeto_feed.time_comments }}
+          {{ filme.time_comments }}
         </ion-note>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
 
   </ion-card>
 </ion-content>
